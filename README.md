@@ -1,4 +1,5 @@
 Fun-Stuff-Only
 ==============
 
-Only Fun Things Allowed
+Only Fun Things are Allowed!
+PowerCLI and BASH.

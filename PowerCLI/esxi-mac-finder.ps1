@@ -1,0 +1,2 @@
+# Pull physical ESXi MACs
+get-vmhost | ? { $_.Version -gt 5} | get-esxcli | select @{N="HostName"; E={$_.system.hostname.get().FullyQualifiedDomainName}},@{N="Driver";E={$_.network.nic.get("vmnic0").DriverInfo.Driver}},@{N="Firmware";E={$_.network.nic.get("vmnic0").DriverInfo.FirmwareVersion}},@{N="DriverVersion";E={$_.network.nic.get("vmnic0").DriverInfo.Version}} |Export-csv -NoTypeInformation -UseCulture -Path %userprofile%\desktop\esxi-macs.csv

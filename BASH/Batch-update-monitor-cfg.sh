@@ -30,12 +30,14 @@ cat 3.15.0 | sort | uniq > 3.15.0-clean
 # Use vi to remove any lines from the cleaned text files that are not IPs. They will be at the top and bottom of the files.
 Prepare Files for Update
 cp ~/3.*-clean /var/tmp/
+# Yes, I understand just how dumb chmod 777 is.
 chmod 777 /var/tmp/3.*-clean
 cp ~/eventlist.cfg.3.9 /var/tmp/eventlist.cfg.3.9
 cp ~/eventlist.cfg.3.12 /var/tmp/eventlist.cfg.3.12
 cp ~/eventlist.cfg.3.13 /var/tmp/eventlist.cfg.3.13
 cp ~/eventlist.cfg.3.14 /var/tmp/eventlist.cfg.3.14
 cp ~/eventlist.cfg.3.15 /var/tmp/eventlist.cfg.3.15
+# Yep. We're doing this again. The mess will be gone in 30 days when RHEL tidies up.
 chmod 777 /var/tmp/eventlist.cfg.3.*
  
 ################################

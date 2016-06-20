@@ -3,6 +3,7 @@
 #
 # This test was created during a migration where the customer experienced poor storage performance. 
 # It tests the local hard drive and in this case the NFS share at /apache
+# This test proved that BASH outperformed PHP by a huge margin, and exposed that the PHP code needed to be updated.
 #
 # Make the /apache dir script
 cd /tmp

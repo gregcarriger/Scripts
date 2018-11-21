@@ -1,3 +1,3 @@
 Fun-Stuff-Only
 ==============
-PowerCLI, BASH, CloudFormation
+PowerCLI, BASH

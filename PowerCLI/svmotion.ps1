@@ -1,9 +1,16 @@
-# Storage vMotion
-# By Greg Carriger
-# 
-# When you work in an environment that has too many datastores to list in the GUI, it's time to bust out PowerCLI.
-# This is just an example. Putting this in a ps1 file will let you serially execute a bunch of svMotions.
-# Replace vm-name, Hard disk # and us01a01a05a2
-Get-HardDisk -vm vm-name | Where {$_.Name -eq "Hard disk 2"} | % {Set-HardDisk -HardDisk $_ -Datastore us01a01a05a2 -Confirm:$false}
-Get-HardDisk -vm vm-name | Where {$_.Name -eq "Hard disk 3"} | % {Set-HardDisk -HardDisk $_ -Datastore us01a01a05a2 -Confirm:$false}
-Get-HardDisk -vm vm-name | Where {$_.Name -eq "Hard disk 4"} | % {Set-HardDisk -HardDisk $_ -Datastore us01a01a05a2 -Confirm:$false}
+# Evacuate DataStore
+#==========
+# Variables
+#==========
+$EvacuatingDataStore = "old-busted-datastore01"
+$DestinationDataStoreCluster = "DatastoreCluster01"
+#==========
+# Script
+#==========
+Get-Datastore $EvacuatingDataStore | get-vm | ForEach-Object {
+	$FreeDataStore = Get-DatastoreCluster -name $DestinationDataStoreCluster | Get-Datastore | Sort-Object -Property FreeSpaceGB -Descending | Select-Object -First 1
+	move-vm -vm  $_.Name -Datastore $FreeDataStore
+	Get-DatastoreCluster -name $DestinationDataStoreCluster | Get-Datastore | sort-object FreeSpaceGB -Descending | select name,FreeSpaceGB | ft
+	$VMsleft = (Get-Datastore $EvacuatingDataStore | get-vm | measure-object).count
+	Write-Output "VMs left $VMsleft"
+}

@@ -1,19 +1,20 @@
 # Connect to vCenters
-# By Greg Carriger
-#
-Set-PowerCLIConfiguration -ProxyPolicy NoProxy -Confirm:$false
-Set-PowerCLIConfiguration -DefaultVIServerMode Multiple -Confirm:$false
-connect-viserver 1.1.1.1
-connect-viserver 1.1.1.2
-connect-viserver 1.1.1.3
-connect-viserver 1.1.1.4
-connect-viserver 1.1.1.5
-connect-viserver 1.1.1.6
-connect-viserver 1.1.1.7
- 
-# To disconnect from a vCenter server
-# disconnect-viserver 1.1.1.1
-# To disconnect from all vCenter servers
-# disconnect-viserver *
-# Check to see what vCenter server you are connected to
-$global:DefaultVIServer
+# v1.0
+# by Greg Carriger
+# Suppress cert errors, allow connection to multiple vCenters
+Set-PowerCLIConfiguration -DefaultVIServerMode Multiple -Scope AllUsers -confirm:$false >$null 2>&1
+Set-PowerCLIConfiguration -InvalidCertificateAction ignore -confirm:$false >$null 2>&1
+# Connect to all 4 vCenters
+$vcenterservers = "vc1.example.com", "vc2.example.com", "vc3.example.com", "vc4.example.com"
+Write-Host "Enter vSphere username" -ForegroundColor Yellow -BackgroundColor Black
+$User = Read-Host -Prompt 'Username[some.person]'
+if ([string]::IsNullOrWhiteSpace($User))
+{
+$User = 'some.person'
+}
+$Pass = Read-Host -assecurestring "Password[]"
+$Pass = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto([System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($Pass))
+Connect-VIServer -Server $vcenterservers -Protocol https -User $User -Password $Pass
+Write-Host "Clearing password variable" -ForegroundColor Yellow -BackgroundColor Black
+$Pass = "hunter2"
+Write-Host connected to $global:DefaultVIServers

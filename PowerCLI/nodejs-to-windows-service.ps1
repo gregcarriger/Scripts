@@ -1,3 +1,6 @@
+
+# node-windows is awesome https://github.com/coreybutler/node-windows
+
 var Service = require('node-windows').Service; 
 var svc = new Service({ 
  name:'CustomServiceName', 

@@ -12,6 +12,7 @@ $accesskeysecret = ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789
 # Script
 # Move file
 net use $localdrive":" "\\"$remotesystem"\"$localdrive"`$ $pass /user:$useraccount /p:yes
+robocopy $file $localdrive":\" /E /R:5 /W:5 /TBD /NP /V
 
 # Check file
 $filehash = (Get-FileHash $file).hash

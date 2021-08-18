@@ -1,3 +1,3 @@
 Fun-Stuff-Only
 ==============
-PowerCLI, BASH
+PowerShell, PowerShell for Azure, Bash, PowerCLI

@@ -1,3 +1,3 @@
-Fun-Stuff-Only
+Scripts
 ==============
 PowerShell, PowerShell for Azure, Bash, PowerCLI

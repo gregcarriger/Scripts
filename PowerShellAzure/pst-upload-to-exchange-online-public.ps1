@@ -11,7 +11,7 @@
    .csv file for use with Exchange Online compliance center.
 .NOTES
     Author     : Greg Carriger
-    Version    : 1.0.0.0 Initial Build  
+    Version    : 1.0.0.1
 	Script assumes the PST files are in a folder that is named with the active directory user ID.
 	You must have the Active Directory RSAT installed.
 .COMPONENT

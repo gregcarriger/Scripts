@@ -96,6 +96,6 @@ write-output "Does azcopy_log_directory exist?"
 test-path $azcopy_log_directory
 write-output "Does azcopy_exe exist?"
 test-path $azcopy_exe
-write-output "Use CTRL+C to stop the script and make sure files and folders exist."
+write-output "Make sure files and folders exist and rerun the script."
 pause
 }

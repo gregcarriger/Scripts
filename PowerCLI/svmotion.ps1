@@ -1,4 +1,5 @@
 # Evacuate DataStore
+# If you svmotion everything at once, it tries to move EVERY vmdk to the least used datastore because svmotions execute (8x) concurrently by default. This fills up one datastore.
 #==========
 # Variables
 #==========
